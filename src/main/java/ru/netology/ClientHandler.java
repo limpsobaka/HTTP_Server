@@ -13,6 +13,7 @@ import java.util.List;
 
 public class ClientHandler implements Runnable {
   private Socket socket;
+
   public ClientHandler(Socket socket) {
     this.socket = socket;
   }
@@ -49,8 +50,7 @@ public class ClientHandler implements Runnable {
       }
     } catch (NoSuchFileException e) {
       throw new RuntimeException("File not found: " + e.getMessage());
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       throw new RuntimeException(e);
     }
   }

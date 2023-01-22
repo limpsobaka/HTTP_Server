@@ -5,7 +5,7 @@ import java.net.ServerSocket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class Server{
+public class Server {
   private final int threadsQuantity = 64;
   private static Server instance;
 
@@ -18,6 +18,7 @@ public class Server{
     }
     return instance;
   }
+
   public void startServer() {
     try (final var serverSocket = new ServerSocket(9999)) {
       ExecutorService executor = Executors.newFixedThreadPool(threadsQuantity);
