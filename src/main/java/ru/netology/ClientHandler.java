@@ -12,15 +12,17 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class ClientHandler implements Runnable {
-  private Socket socket;
+  private final Socket socket;
+  private final List<String> validPaths = List.of("/index.html", "/spring.svg", "/spring.png",
+          "/resources.html", "/styles.css", "/app.js", "/links.html", "/forms.html", "/classic.html",
+          "/events.html", "/events.js");
 
   public ClientHandler(Socket socket) {
     this.socket = socket;
   }
 
   public void run() {
-    final var validPaths = List.of("/index.html", "/spring.svg", "/spring.png", "/resources.html",
-            "/styles.css", "/app.js", "/links.html", "/forms.html", "/classic.html", "/events.html", "/events.js");
+
     try (final var in = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
       // read only request line for simplicity
       // must be in form GET /path HTTP/1.1
@@ -29,6 +31,7 @@ public class ClientHandler implements Runnable {
 
       if (parts.length != 3) {
         // just close socket
+        socket.close();
       }
 
       final var path = parts[1];
