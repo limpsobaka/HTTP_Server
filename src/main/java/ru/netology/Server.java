@@ -23,8 +23,8 @@ public class Server{
       ExecutorService executor = Executors.newFixedThreadPool(threadsQuantity);
       while (true) {
         final var socket = serverSocket.accept();
-        ClientHeader clientHeader = new ClientHeader(socket);
-        executor.execute(clientHeader);
+        ClientHandler clientHandler = new ClientHandler(socket);
+        executor.execute(clientHandler);
       }
     } catch (IOException e) {
       throw new RuntimeException(e);

@@ -11,9 +11,9 @@ import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class ClientHeader implements Runnable {
+public class ClientHandler implements Runnable {
   private Socket socket;
-  public ClientHeader(Socket socket) {
+  public ClientHandler(Socket socket) {
     this.socket = socket;
   }
 
